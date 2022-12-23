@@ -48,10 +48,11 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import { getuserInfoApi } from '@/api'
 export default {
   name: 'LayoutPage',
   methods: {
-    ...mapMutations(['updateToken']),
+    ...mapMutations(['updateToken', 'updateUserInfo']),
     logoutFn () {
       this.$confirm('您确定要退出吗?', '提示', {
         confirmButtonText: '确定',
@@ -61,6 +62,11 @@ export default {
         this.$router.push('/login')
       }).catch((err) => err)
     }
+  },
+  created () {
+    getuserInfoApi().then(res => {
+      this.updateUserInfo(res.data.data)
+    })
   }
 }
 </script>
