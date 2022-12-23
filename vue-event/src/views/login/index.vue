@@ -57,7 +57,7 @@ export default {
           // localStorage.setItem('token', res.token)
           // token存在localStorage中
           this.updateToken(res.token)
-          // this.$router.push('/login')
+          this.$router.push('/')
         } else {
           return false
         }
