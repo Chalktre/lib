@@ -3,13 +3,7 @@
 </template>
 
 <script>
-import { registerApi } from '@/api'
-export default {
-  async created () {
-    const res = await registerApi()
-    console.log(res)
-  }
-}
+export default {}
 </script>
 
 <style lang="less" scoped>
