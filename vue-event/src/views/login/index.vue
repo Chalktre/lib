@@ -54,8 +54,8 @@ export default {
           if (res.code !== 0) return this.$message.error(res.message)
           this.$message.success(res.message)
           // token存在localStorage中
-          // localStorage.setItem('token', res.token)
-          // token存在localStorage中
+          localStorage.setItem('token', res.token)
+          // token存在vuex中
           this.updateToken(res.token)
           this.$router.push('/')
         } else {
