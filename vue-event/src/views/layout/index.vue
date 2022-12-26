@@ -33,8 +33,8 @@
         >
       </el-menu>
     </el-header>
+    <!-- 侧边栏区域 -->
     <el-container>
-      <!-- 侧边栏区域 -->
       <!-- 左侧边栏的用户信息 -->
       <el-aside width="200px">
         <div class="user-box">
@@ -44,7 +44,7 @@
         </div>
         <!--  侧边栏导航菜单 -->
         <el-menu
-          default-active="/home"
+          :default-active="$router.currentRoute.path"
           class="el-menu-vertical-demo"
           background-color="#23262E"
           text-color="#fff"

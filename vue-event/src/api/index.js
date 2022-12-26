@@ -28,3 +28,11 @@ export const getMenusApi = () => {
     url: '/my/menus'
   })
 }
+// 更新用户名
+export const updateUserInfo = ({ nickname, email, id }) => {
+  return request({
+    url: '/my/userinfo',
+    method: 'PUT',
+    data: { nickname, email, id }
+  })
+}
