@@ -17,6 +17,10 @@ const routes = [
       {
         path: 'user-info',
         component: () => import('@/views/user-info')
+      },
+      {
+        path: 'user-avatar',
+        component: () => import('@/views/user-avatar')
       }
     ]
   },

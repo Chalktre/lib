@@ -36,3 +36,11 @@ export const updateUserInfo = ({ nickname, email, id }) => {
     data: { nickname, email, id }
   })
 }
+// 更新用户头像
+export const updateAvatarApi = (avatar) => {
+  return request({
+    url: '/my/update/avatar',
+    method: 'PATCH',
+    data: { avatar }
+  })
+}
