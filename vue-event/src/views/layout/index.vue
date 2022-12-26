@@ -145,7 +145,7 @@ export default {
     background-color: #f2f2f2;
   }
   .el-footer {
-    background-color: #eee;
+    background-color: #ccc;
     font-size: 12px;
     display: flex;
     justify-content: center;
