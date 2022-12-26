@@ -82,3 +82,11 @@ export const delArtCateApi = (id) => {
     params: { id }
   })
 }
+// 发布文章
+export const uploadArticleAPI = (fd) => {
+  return request({
+    url: '/my/article/add',
+    method: 'POST',
+    data: fd // 参数要的是表单对象, 不能写普通对象, axios内部会判断, 如果是表单对象, 传递的请求体会设置Content-Type: form-data与后端对应
+  })
+}
