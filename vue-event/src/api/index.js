@@ -52,3 +52,33 @@ export const updatePwdApi = ({ old_pwd, new_pwd, re_pwd }) => {
     data: { old_pwd, new_pwd, re_pwd }
   })
 }
+// 请求文章分类
+export const getArtCateListApi = () => {
+  return request({
+    url: '/my/cate/list'
+  })
+}
+// 添加文章分类
+export const addArtCateApi = ({ cate_name, cate_alias }) => {
+  return request({
+    url: '/my/cate/add',
+    method: 'POST',
+    data: { cate_name, cate_alias }
+  })
+}
+// 编辑文章分类
+export const updateArtCateApi = ({ id, cate_name, cate_alias }) => {
+  return request({
+    url: '/my/cate/info',
+    method: 'PUT',
+    data: { id, cate_name, cate_alias }
+  })
+}
+// 删除-文章分类
+export const delArtCateApi = (id) => {
+  return request({
+    url: '/my/cate/del',
+    method: 'DELETE',
+    params: { id }
+  })
+}
