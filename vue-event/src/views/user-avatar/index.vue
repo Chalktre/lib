@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { updateAvatarApi } from '@/api'
+import { updateAvatarApi, getuserInfoApi, updateUserInfo } from '@/api'
 export default {
   name: 'UserAvatar',
   data () {
@@ -52,6 +52,9 @@ export default {
       updateAvatarApi(this.avatar).then(res => {
         if (res.data.code !== 0) return this.$message.error('上传头像失败！')
         this.$message.success('上传头像成功！')
+        getuserInfoApi().then(res => {
+          updateUserInfo(res.data.data)
+        })
       })
     }
   }

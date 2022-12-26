@@ -29,11 +29,11 @@ export const getMenusApi = () => {
   })
 }
 // 更新用户名
-export const updateUserInfo = ({ nickname, email, id }) => {
+export const updateUserInfo = ({ nickname, email, id, user_pic }) => {
   return request({
     url: '/my/userinfo',
     method: 'PUT',
-    data: { nickname, email, id }
+    data: { nickname, email, id, user_pic }
   })
 }
 // 更新用户头像
@@ -42,5 +42,13 @@ export const updateAvatarApi = (avatar) => {
     url: '/my/update/avatar',
     method: 'PATCH',
     data: { avatar }
+  })
+}
+// 修改密码
+export const updatePwdApi = ({ old_pwd, new_pwd, re_pwd }) => {
+  return request({
+    url: '/my/updatepwd',
+    method: 'PATCH',
+    data: { old_pwd, new_pwd, re_pwd }
   })
 }

@@ -10,18 +10,19 @@
         mode="horizontal"
         background-color="#23262E"
         text-color="#fff"
-        active-text-color="#409EFF"
+        active-text-color="#fff"
       >
         <el-submenu index="1">
           <template slot="title">
             <!-- 头像 -->
-            <img src="../../assets/images/logo.png" alt="" class="avatar" />
+            <img :src="user_pic" alt="" v-if="user_pic" class="avatar"/>
+            <img src="../../assets/images/logo.png" alt="" v-else />
             <span>个人中心</span>
           </template>
-          <el-menu-item index="1-1"
+          <el-menu-item index="1-1" @click="$router.push('/user-info')"
             ><i class="el-icon-s-operation"></i>基本资料</el-menu-item
           >
-          <el-menu-item index="1-2"
+          <el-menu-item index="1-2" @click="$router.push('/user-avatar')"
             ><i class="el-icon-camera"></i>更换头像</el-menu-item
           >
           <el-menu-item index="1-3"
@@ -54,18 +55,24 @@
         >
           <template v-for="item in menus">
             <!-- 不包含子菜单的“一级菜单” -->
-            <el-menu-item :index="item.indexPath" :key="item.indexPath" v-if="!item.children"
-              ><i :class="item.icon"></i>{{item.title}}</el-menu-item
+            <el-menu-item
+              :index="item.indexPath"
+              :key="item.indexPath"
+              v-if="!item.children"
+              ><i :class="item.icon"></i>{{ item.title }}</el-menu-item
             >
             <!-- 包含子菜单的“一级菜单” -->
             <el-submenu :index="item.indexPath" :key="item.indexPath" v-else>
               <template slot="title">
                 <i :class="item.icon"></i>
-                <span>{{item.title}}</span>
+                <span>{{ item.title }}</span>
               </template>
               <!-- 循环创建二级菜单 -->
-              <el-menu-item :index="subItem.indexPath" v-for="subItem in item.children" :key="subItem.indexPath"
-                ><i :class="subItem.icon"></i>{{subItem.title}}</el-menu-item
+              <el-menu-item
+                :index="subItem.indexPath"
+                v-for="subItem in item.children"
+                :key="subItem.indexPath"
+                ><i :class="subItem.icon"></i>{{ subItem.title }}</el-menu-item
               >
             </el-submenu>
           </template>
@@ -74,7 +81,7 @@
       <el-container>
         <!-- 页面主体区域 -->
         <el-main>
-            <router-view></router-view>
+          <router-view></router-view>
         </el-main>
         <!-- 底部 footer 区域 -->
         <el-footer>广告位招租</el-footer>
