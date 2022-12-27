@@ -29,3 +29,5 @@ myAxios.interceptors.response.use(function (response) {
 })
 
 export default myAxios
+
+export const baseURL = 'http://big-event-vue-api-t.itheima.net'
