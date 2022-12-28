@@ -4,6 +4,7 @@ import router from 'vue-router'
 // 创建axios实例
 const myAxios = axios.create({
   baseURL: 'http://big-event-vue-api-t.itheima.net'
+  // baseURL: 'http://127.0.0.1:8081'
 })
 
 // 请求拦截器：除白名单地址以外的请求都携带token
