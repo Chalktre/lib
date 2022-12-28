@@ -17,6 +17,11 @@ app.use((req, res, next)=>{
     next()
 })
 
+// 解析token
+const config = require('./config')
+const expressJWT = require('express-jwt')
+app.use(expressJWT({ secret: config.jwtSecretKey}).unless({path: [/^\/api\//]}))
+
 // 捕获验证错误
 const joi = require('@hapi/joi')
 app.use(function(err, req, res, next) {
@@ -29,6 +34,10 @@ app.use(function(err, req, res, next) {
 // 导入用户路由模块
 const userRouter = require('./router/user')
 app.use('/api', userRouter)
+
+// 导入个人中心路由模块
+const userinfo = require('./router/userinfo')
+app.use('/my', userinfo)
 
 // 启动服务器
 app.listen(8081, ()=>{
