@@ -1,6 +1,7 @@
 const db = require('../db/index')
 const bcript = require('bcryptjs')
 
+// 获取用户信息
 exports.getUserInfo = (req, res) => {
     db.query('select id, username, nickname, email, user_pic from ev_users where id=?', req.user.id, (err, results) => {
         if(err) return res.cc(err)
@@ -13,6 +14,7 @@ exports.getUserInfo = (req, res) => {
     })
 }
 
+// 修改昵称，邮箱
 exports.updateUserInfo = (req, res) => {
     db.query('update ev_users set ? where id=?', [req.body, req.body.id], (err, results) => {
         if(err) return res.cc(err)
@@ -24,6 +26,7 @@ exports.updateUserInfo = (req, res) => {
     })
 }
 
+// 更改密码
 exports.updatePassword = (req, res) => {
     // 查询用户
     db.query('select * from ev_users where id=?', req.user.id, (err, results) => {
@@ -42,6 +45,18 @@ exports.updatePassword = (req, res) => {
                 status: 0,
                 message: '修改成功！'
             })
+        })
+    })
+}
+
+// 更改头像
+exports.updateAvatar = (req, res) => {
+    db.query('update ev_users set user_pic=? where id=?', [req.body.avatar, req.user.id], (err, results) => {
+        if(err) return res.cc(err)
+        if(results.affectedRows !== 1) return res.cc('更新失败！')
+        return res.send({
+            status: 0,
+            message: '更新成功！'
         })
     })
 }
