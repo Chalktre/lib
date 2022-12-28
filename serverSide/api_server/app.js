@@ -21,6 +21,8 @@ app.use((req, res, next)=>{
 const joi = require('@hapi/joi')
 app.use(function(err, req, res, next) {
     if(err instanceof joi.ValidationError) return res.cc(err)
+    if(err.name === 'UnauthorizedError') return res.cc('身份认证失败！')
+    // 未知错误
     res.cc(err)
 })
 

@@ -1,5 +1,8 @@
 const db = require('../db/index')
 const bcript = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const config = require('../config')
+
 exports.regUser = (req, res) => {
     const userinfo = req.body
     // 判断用户名或密码是否为空
@@ -28,5 +31,18 @@ exports.regUser = (req, res) => {
 }
 
 exports.login = (req, res) => {
-    res.send('login OK')
+    const userinfo = req.body
+    db.query('select * from ev_users where username=?', userinfo.username, (err, results)=>{
+        if(err) return res.cc(err)
+        if(results.length !== 1) return res.cc('登陆失败！')
+        // 对比密码
+        const compareResult = bcript.compareSync(userinfo.password, results[0].password)
+        if(!compareResult) return res.cc('密码错误！')
+        // 剔除信息内的头像和密码
+        const user = {...results[0], user_pic: '', password: ''}
+        const tokenStr = jwt.sign(user, config.jwtSecretKey, {
+            expiresIn: '24h'
+        })
+        res.send({status: 0, message: '登陆成功！', token: 'Bearer ' + tokenStr})
+    })
 }
